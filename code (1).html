@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archon AI - Intelligent Code Co-Pilot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* --- Root Variables --- */
+        :root {
+            --color-bg-dark: #0D1117; /* GitHub Dark Dimmed BG */
+            --color-bg-medium: #161B22;
+            --color-bg-light: #21262D;
+            --color-text-primary: #c9d1d9; /* GitHub Dark Dimmed Text */
+            --color-text-secondary: #8b949e;
+            --color-accent-primary: #58a6ff; /* GitHub Blue */
+            --color-accent-secondary: #3FB950; /* GitHub Green */
+            --color-accent-purple: #bc8cff; /* GitHub Purple */
+            --color-border: #30363d;
+
+            --gradient-hero-text: linear-gradient(90deg, var(--color-accent-primary) 0%, var(--color-accent-secondary) 50%, var(--color-accent-purple) 100%);
+            --gradient-button: linear-gradient(90deg, var(--color-accent-primary) 0%, #3081f7 100%);
+            --gradient-button-hover: linear-gradient(90deg, #6cb0ff 0%, var(--color-accent-primary) 100%);
+        }
+
+        /* --- Base & Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            color: var(--color-text-primary);
+            background-color: var(--color-bg-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- Animated Background Elements --- */
+        .animated-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(80px); /* Increased blur for softer shapes */
+            animation: floatShape 20s infinite ease-in-out alternate;
+        }
+        .shape1 { width: 400px; height: 400px; background: var(--color-accent-primary); top: 10%; left: 10%; animation-duration: 22s; }
+        .shape2 { width: 300px; height: 300px; background: var(--color-accent-secondary); bottom: 15%; right: 5%; animation-duration: 18s; animation-delay: -5s;}
+        .shape3 { width: 250px; height: 250px; background: var(--color-accent-purple); top: 30%; right: 25%; animation-duration: 25s; animation-delay: -10s;}
+
+        @keyframes floatShape {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, 30px) scale(1.2); }
+            100% { transform: translate(-10px, -15px) scale(1); }
+        }
+
+        /* --- Container --- */
+        .container {
+            max-width: 1100px; /* Slightly wider */
+            width: 90%;
+            margin: 0 auto;
+            padding: 0 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* --- Header --- */
+        header {
+            padding: 30px 0;
+            text-align: center;
+            animation: fadeInDown 1s ease-out;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 40px;
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--color-text-primary);
+            letter-spacing: -1px;
+            /* background: var(--gradient-hero-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; */
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            text-align: center;
+            padding: 60px 0 80px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem); /* Responsive font size */
+            font-weight: 900; /* Extra bold */
+            color: var(--color-text-primary);
+            margin-bottom: 25px;
+            line-height: 1.15;
+            letter-spacing: -2px;
+        }
+        .hero .highlight {
+            background: var(--gradient-hero-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 0 5px; /* Add slight padding if background clip causes thinness */
+        }
+        .hero p.subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 35px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 400;
+        }
+        .hero-demo-media {
+            max-width: 100%;
+            width: 750px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 0 1px var(--color-border);
+            margin: 40px auto 50px;
+            display: block;
+            border: 1px solid var(--color-border); /* Added border */
+        }
+
+        /* --- CTA Form --- */
+        .cta-form-wrapper {
+             background-color: var(--color-bg-medium);
+             padding: 40px;
+             border-radius: 16px;
+             max-width: 550px;
+             margin: 0 auto 60px auto;
+             box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+             border: 1px solid var(--color-border);
+             animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        .cta-form-wrapper h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 10px;
+        }
+        .cta-form-wrapper p.form-intro {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 25px;
+        }
+        .cta-form input[type="email"],
+        .cta-form input[type="text"] {
+            width: 100%;
+            padding: 14px 18px;
+            font-size: 1rem;
+            background-color: var(--color-bg-dark);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text-primary);
+            margin-bottom: 15px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .cta-form input:focus {
+            outline: none;
+            border-color: var(--color-accent-primary);
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+        }
+        .cta-form button[type="submit"] {
+            width: 100%;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: white;
+            background: var(--gradient-button);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cta-form button[type="submit"]:hover {
+            background: var(--gradient-button-hover);
+            transform: translateY(-2px);
+        }
+        .cta-form button[type="submit"]:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        .form-note { margin-top: 15px; font-size: 0.9rem; min-height: 1.3em; }
+        .success-message { color: var(--color-accent-secondary); }
+        .error-message { color: #ff7b72; } /* Softer red */
+
+        /* --- Content Sections (Features, How It Works) --- */
+        .content-section {
+            padding: 70px 0;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--color-text-primary);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+        }
+        .section-title-underline {
+            display: block;
+            width: 70px;
+            height: 3px;
+            background: var(--gradient-hero-text);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        /* Feature Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .feature-item {
+            background-color: var(--color-bg-medium);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .feature-item .icon {
+            font-size: 2rem;
+            margin-bottom: 18px;
+            display: inline-flex; /* Changed for centering */
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-image: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-purple));
+            color: white; /* Icon color itself */
+        }
+        .feature-item h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--color-text-primary);
+            margin-bottom: 12px;
+        }
+        .feature-item p {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* How It Works Steps */
+        .steps {
+            display: flex;
+            justify-content: space-between; /* Better distribution */
+            flex-wrap: wrap;
+            gap: 30px; /* Consistent gap */
+            margin-top: 30px;
+        }
+        .step {
+            background-color: var(--color-bg-medium);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            text-align: center;
+            flex: 1; /* Allow flex grow */
+            min-width: 260px; /* Prevent too narrow */
+            max-width: 320px; /* Max width per step */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+         .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .step .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-image: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-purple));
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+         .step h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--color-text-primary);
+        }
+        .step p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 50px 0;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            margin-top: 80px; /* More space before footer */
+        }
+        footer a {
+            color: var(--color-accent-primary);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #8cbefc; /* Lighter blue on hover */
+            text-decoration: underline;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInDown { from { opacity:0; transform: translate3d(0,-20px,0); } to { opacity:1; transform: translate3d(0,0,0); } }
+        @keyframes fadeInUp { from { opacity:0; transform: translate3d(0,20px,0); } to { opacity:1; transform: translate3d(0,0,0); } }
+        
+        /* Spinner for button */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            .step {
+                max-width: 450px; /* Allow steps to be wider when stacked */
+                 width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: clamp(2.2rem, 5.5vw, 3.5rem); }
+            .hero p.subtitle { font-size: 1.1rem; }
+            .section-title h2 { font-size: 1.8rem; }
+            .feature-item h3, .step h3 { font-size: 1.15rem; }
+            .feature-item p, .step p { font-size: 0.9rem; }
+        }
+         @media (max-width: 480px) {
+            .container { width: 95%; }
+            .hero h1 { letter-spacing: -1px;}
+         }
+
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">Archon AI</div>
+        </header>
+
+        <main>
+            <section class="hero">
+                <h1>Understand, Optimize & Modernize Your Code with <span class="highlight">AI Co-Pilot</span></h1>
+                <p class="subtitle">Archon AI deeply analyzes your GitHub repositories, revealing actionable insights and clear roadmaps to evolve your most complex systems efficiently.</p>
+                
+                <!-- Replace with your actual GIF or MP4 -->
+                <img src="your-archon-demo.gif" alt="Archon AI Demo In Action" class="hero-demo-media">
+                <!-- 
+                <video autoplay loop muted playsinline class="hero-demo-media">
+                    <source src="your-archon-demo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video> 
+                -->
+
+                <div class="cta-form-wrapper">
+                    <h3>Get Early Access & Free "ML System Design FAQ" PDF</h3>
+                    <p class="form-intro">Join our waitlist and receive a valuable guide on ML system design patterns.</p>
+                    <form id="earlyAccessForm" action="https://formsubmit.co/archon.ai.work@gmail.com" method="POST">
+                        <!-- Formsubmit.co Hidden Fields -->
+                        <input type="hidden" name="_subject" value="🚀 New Archon AI Early Access Request + PDF!">
+                        <input type="hidden" name="_replyto" id="formReplyTo"> <!-- Will be set by JS -->
+                        <input type="hidden" name="_next" value="https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/thank-you.html"> <!-- IMPORTANT: Update this URL -->
+                        <!-- <input type="hidden" name="_captcha" value="false"> --> <!-- Remove for production -->
+                        <input type="hidden" name="source" value="ArchonAI Landing Page v2 - PDF">
+
+                        <input type="email" id="formEmail" name="email" placeholder="your.work@example.com" required>
+                        <input type="text" id="formCompany" name="company" placeholder="Company / School (Optional)"> 
+                        <textarea id="formFeedback" name="feedback" placeholder="Anything specific you'd like to see? (Optional)" rows="3" style="width: 100%; padding: 12px 18px; font-size: 1rem; background-color: var(--color-bg-dark); border: 1px solid var(--color-border); border-radius: 8px; color: var(--color-text-primary); margin-bottom: 15px; transition: border-color 0.3s, box-shadow 0.3s; resize: vertical;"></textarea>
+                        <button type="submit" id="formSubmitButton">
+                            <span class="button-text-span">Request PDF & Join Waitlist</span>
+                            <span class="spinner-span" style="display: none;"><div class="spinner"></div></span>
+                        </button>
+                    </form>
+                    <p class="form-note" id="formMessage"></p>
+                </div>
+            </section>
+
+            <section class="content-section features" id="features">
+                <div class="section-title">
+                    <h2>Unlock Superpowers for Your Codebase</h2>
+                    <div class="section-title-underline"></div>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">💡</div>
+                        <h3>Deep Code Understanding</h3>
+                        <p>Automated architecture visualization and contextual insights for legacy systems and complex dependencies.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🎯</div>
+                        <h3>Actionable Diagnostics</h3>
+                        <p>Pinpoint performance bottlenecks, security vulnerabilities, cost drivers, and complexity hotspots with AI precision.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🚀</div>
+                        <h3>Guided Modernization</h3>
+                        <p>Receive prioritized recommendations and clear roadmaps for refactoring and modernizing effectively.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">💬</div>
+                        <h3>Intelligent Code Q&A</h3>
+                        <p>Ask natural language questions about your codebase and get instant, context-aware answers from our AI agent.</p>
+                    </div>
+                     <div class="feature-item">
+                        <div class="icon">📈</div>
+                        <h3>Boost Developer Velocity</h3>
+                        <p>Slash time spent deciphering code, accelerate onboarding, and empower your team to build and iterate faster.</p>
+                    </div>
+                     <div class="feature-item">
+                        <div class="icon">🛡️</div>
+                        <h3>Proactive Code Health</h3>
+                        <p>Continuously identify and mitigate risks, improve code quality, and ensure long-term system maintainability.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section how-it-works" id="how-it-works">
+                 <div class="section-title">
+                    <h2>Simple Steps to Code Clarity</h2>
+                    <div class="section-title-underline"></div>
+                </div>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Connect Repo</h3>
+                        <p>Securely link your GitHub repository (public or private) to Archon AI in minutes.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>AI Agent Analysis</h3>
+                        <p>Our advanced AI agent performs a multi-dimensional scan of your code, structure, and patterns.</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Unlock Insights</h3>
+                        <p>Access an interactive dashboard with visualizations, prioritized actions, and intelligent Q&A.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2024-2025 Archon AI. All rights reserved.</p>
+        <p><a href="mailto:archon.ai.work@gmail.com">archon.ai.work@gmail.com</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('earlyAccessForm');
+            const emailInput = document.getElementById('formEmail');
+            const companyInput = document.getElementById('formCompany'); // If you add it
+            const feedbackInput = document.getElementById('formFeedback'); // If you add it
+            const replyToInput = document.getElementById('formReplyTo');
+            const formMessage = document.getElementById('formMessage');
+            const submitButton = document.getElementById('formSubmitButton');
+            const buttonTextSpan = submitButton.querySelector('.button-text-span');
+            const spinnerSpan = submitButton.querySelector('.spinner-span');
+
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    const email = emailInput.value.trim();
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    if (!email || !emailPattern.test(email)) {
+                        event.preventDefault(); 
+                        formMessage.textContent = 'Please enter a valid work email address.';
+                        formMessage.className = 'form-note error-message';
+                        return;
+                    }
+                    
+                    if(replyToInput) replyToInput.value = email; // Set replyto for Formsubmit
+
+                    if (buttonTextSpan && spinnerSpan) {
+                        buttonTextSpan.style.display = 'none';
+                        spinnerSpan.style.display = 'inline-flex';
+                    }
+                    submitButton.disabled = true;
+                    formMessage.textContent = 'Submitting...';
+                    formMessage.className = 'form-note';
+
+                    // For FormSubmit.co, when using action/method on form, the browser handles submission.
+                    // If you use their AJAX endpoint with fetch, you'd handle success/error messages here.
+                    // Since action is set, this JS mainly does validation and UI feedback before native submission.
+                    // The redirect to your _next URL will handle the "thank you".
+                });
+            }
+            
+            // Check if redirected from Formsubmit success
+            if (window.location.search.includes("submission=success")) {
+                 if(formMessage) {
+                    formMessage.textContent = '🎉 Thank you! Your request is received. The PDF is on its way!';
+                    formMessage.className = 'form-note success-message';
+                 }
+            }
+
+
+            // Particle generation (simple example)
+            const animatedBg = document.querySelector('.animated-bg');
+            if(animatedBg && false) { // Set to true to enable particles - can be performance intensive
+                for(let i=0; i<20; i++){
+                    let particle = document.createElement('div');
+                    Object.assign(particle.style, {
+                        position: 'absolute',
+                        width: `${Math.random()*5 + 2}px`,
+                        height: particle.style.width,
+                        backgroundColor: `hsla(${Math.random()*60 + 200}, 70%, 70%, 0.3)`, // Blues and purples
+                        borderRadius: '50%',
+                        left: `${Math.random()*100}%`,
+                        top: `${Math.random()*100}%`,
+                        animation: `floatShape ${Math.random()*15 + 10}s infinite ease-in-out alternate`,
+                        animationDelay: `${Math.random()*-10}s` // Start at different points
+                    });
+                    animatedBg.appendChild(particle);
+                }
+            }
+            
+            // Basic animation on scroll for content sections
+            const sections = document.querySelectorAll('.content-section, .hero > *:not(h1):not(p.subtitle)');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        // observer.unobserve(entry.target); // Optional: stop observing after first animation
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                section.style.animationPlayState = 'paused'; // Ensure animation is paused initially
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
