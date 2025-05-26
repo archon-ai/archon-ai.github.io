@@ -90,11 +90,24 @@ ii<!DOCTYPE html>
             line-height: 1.2; margin-bottom: 20px;
             text-shadow: 0 3px 15px rgba(0,0,0,0.25);
         }
-        .hero-section .highlight {
+/*         .hero-section .highlight {
             background: var(--hero-highlight-gradient);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             background-clip: text; text-fill-color: transparent;
             display: inline-block; /* Needed for some gradient effects */
+        } */
+
+        .hero-section .highlight { /* For the main orange/yellow highlight */
+            background: var(--hero-highlight-gradient);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-fill-color: transparent;
+            display: inline-block;
+        }
+        .hero-section .highlight-alt { /* For "Accelerate Innovation" */
+            background: var(--hero-highlight-alt-gradient); /* Uses the new red/magenta gradient */
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-fill-color: transparent;
+            display: inline-block;
         }
         .hero-section p.subtitle {
             font-size: 1.15rem; color: var(--text-on-dark-secondary);
