@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You! - Archon AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Orange/Yellow Theme (Matching index (2).html inspiration) */
+            --bg-gradient-main: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --text-on-dark-primary: #ffffff;
+            --text-on-dark-secondary: rgba(255, 255, 255, 0.85);
+            --button-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            --button-hover-gradient: linear-gradient(135deg, #facc15 0%, #fb923c 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-on-dark-primary);
+            background-image: var(--bg-gradient-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background (Grain - simplified from your example) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            background: inherit; /* Inherits body gradient */
+        }
+        body::after { /* Grain effect */
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="g" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="0.5" fill="rgba(0,0,0,0.03)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23g)"/></svg>');
+            animation: grainMove 8s steps(10) infinite;
+        }
+        @keyframes grainMove {
+          0%, 100% { transform: translate(0, 0); }
+          25% { transform: translate(-2px, 2px); }
+          50% { transform: translate(2px, -2px); }
+          75% { transform: translate(2px, 2px); }
+        }
+        
+        .thank-you-container {
+            background: rgba(0, 0, 0, 0.2); /* Semi-transparent dark card */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .logo-thankyou {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-on-dark-primary);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: var(--text-on-dark-secondary);
+            margin-bottom: 30px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937; /* Dark text on light button */
+            background-image: var(--button-gradient);
+            border: none;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: background-image 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.2);
+        }
+
+        .cta-button:hover {
+            background-image: var(--button-hover-gradient);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <div class="logo-thankyou">Archon AI</div>
+        <h1>🎉 Thank You!</h1>
+        <p>Your request has been received. We'll send the "Optimizing ML Systems with AI Code Analysis" PDF to your email shortly.</p>
+        <p>In the meantime, feel free to explore our main site again or look out for our next update!</p>
+        <a href="index.html" class="cta-button">Return to Homepage</a>
+        <p class="footer-note">If you don't receive the email within a few minutes, please check your spam folder.</p>
+    </div>
+
+    <script>
+        // Optional: Add some simple particle effects if desired, similar to the main page
+        // For simplicity, keeping this page lighter on JS.
+    </script>
+</body>
+</html>
