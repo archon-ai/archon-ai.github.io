@@ -87,16 +87,8 @@ ii<!DOCTYPE html>
         .hero-section h1 {
             font-size: clamp(2.5rem, 6vw, 3.8rem); font-weight: 800;
             color: var(--text-on-dark-primary);
-            line-height: 1.25;
-            margin-bottom: 20px;
+            line-height: 1.2; margin-bottom: 20px;
             text-shadow: 0 3px 15px rgba(0,0,0,0.25);
-        }
-        .hero-section h1 .hero-tagline {
-            font-size: 65%; /* Smaller font size relative to the main H1 */
-            font-weight: 500; /* Lighter font weight than main H1 */
-            color: var(--text-on-dark-secondary); /* Softer white color */
-            display: inline-block; /* Ensures it behaves as a block for spacing if needed */
-            margin-top: 5px; /* Adds a little space above the tagline if needed */
         }
 
         .hero-section .highlight { /* For the main orange/yellow highlight */
@@ -113,8 +105,7 @@ ii<!DOCTYPE html>
         }
         .hero-section p.subtitle {
             font-size: 1.15rem; color: var(--text-on-dark-secondary);
-            max-width: 700px; margin: 0 auto 40px auto; 
-            line-height: 1.75; /* Increased line-height */
+            max-width: 700px; margin: 0 auto 40px auto; line-height: 1.7;
         }
         .hero-demo-media {
             max-width: 100%; width: 700px; height: auto; border-radius: 16px;
@@ -136,10 +127,7 @@ ii<!DOCTYPE html>
         .content-section-card h2 { /* Section titles like "Why Archon AI" */
             font-size: 2rem; font-weight: 700;
             color: var(--text-on-light-primary);
-            text-align: center; 
-            margin-bottom: 30px; /* Adjusted margin */
-            padding-bottom: 15px; /* Added padding */
-            border-bottom: 2px solid var(--form-input-focus-border); /* Subtle border using existing theme color */
+            text-align: center; margin-bottom: 40px;
         }
         
         /* PDF Lead Magnet Card */
@@ -190,108 +178,22 @@ ii<!DOCTYPE html>
         .form-message-area.success { color: #16a34a; } /* Green */
         .form-message-area.error { color: #dc2626; } /* Red */
 
-        /* General text styling within content cards */
-        .content-section-card p {
-            line-height: 1.7;
-            margin-bottom: 1.2em; /* Consistent bottom margin for paragraphs */
-            color: var(--text-on-light-secondary); /* Softer text color for general paragraphs */
-        }
-        .content-section-card p:last-child {
-            margin-bottom: 0;
-        }
-        .content-section-card ul {
-            margin-bottom: 1.2em;
-            padding-left: 20px; /* Default padding for lists */
-            list-style-position: outside;
-        }
-        .content-section-card ul li {
-            margin-bottom: 0.5em;
-            color: var(--text-on-light-secondary);
-        }
-
-        /* Problem Section - Item Cards */
-        .problem-item-card {
-            background-color: #f9fafb; /* Light background like competitive-edge items */
-            border: 1px solid #e5e7eb; /* Matching border */
-            border-radius: 8px; /* Slightly less rounded than main cards */
-            padding: 15px 20px; /* Comfortable padding */
-            text-align: left; /* Ensure text is left-aligned */
-        }
-        .problem-item-card p {
-            font-size: 0.95rem; /* Consistent font size */
-            line-height: 1.6;
-            color: var(--text-on-light-secondary); /* Softer text color */
-            margin-bottom: 0; /* No bottom margin for the p inside this card */
-        }
-
-        /* Features Section (used in Solution & Competitive Edge) */
-        .feature-item {
+        /* Features Section */
+        .feature-card-item {
             background-color: #fff; /* Lighter background for feature cards */
             border: 1px solid #e2e8f0; /* Tailwind Gray-200 */
             border-radius: 12px; padding: 25px; margin-bottom: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             transition: transform 0.3s, box-shadow 0.3s;
         }
-        .feature-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
-        .feature-item .icon {
+        .feature-card-item:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.08); }
+        .feature-card-item .icon {
             font-size: 1.8rem; margin-bottom: 15px; display: inline-flex; align-items:center; justify-content:center;
             width: 50px; height: 50px; border-radius: 50%;
             background-image: var(--button-gradient); color: #fff; /* White icon on gradient */
         }
-        .feature-item h3 { /* General for feature item titles */
-             font-size: 1.2rem; font-weight: 600; 
-             color: var(--text-on-light-primary); 
-             margin-bottom: 8px; 
-        }
-        .feature-item p { /* General for feature item paragraphs */
-            font-size: 0.95rem; 
-            color: var(--text-on-light-secondary); 
-            line-height: 1.6; 
-        }
-
-        /* Solution Section Specifics */
-        .solution-section .feature-item h3 {
-            font-size: 1.25rem; /* Adjusted from 1.3rem to be slightly less than general card h2 */
-            font-weight: 700; /* Bolder for these specific titles */
-            margin-bottom: 12px;
-            color: var(--text-on-light-primary);
-        }
-        .solution-section .feature-item ul {
-            font-size: 0.9rem;
-            color: var(--text-on-light-secondary);
-            padding-left: 20px; /* Ensure padding for list items */
-            list-style-type: disc; 
-            margin-top: 8px; 
-            margin-bottom: 0; /* Remove bottom margin from ul itself if p handles spacing */
-        }
-        .solution-section .feature-item ul li {
-            margin-bottom: 6px; 
-            line-height: 1.5;
-        }
-
-        /* Competitive Edge Section Specifics */
-        .competitive-edge-section .feature-item {
-            padding: 20px;
-            text-align: left;
-            background-color: #f9fafb; /* Light background for distinct cards */
-            border: 1px solid #e5e7eb;
-            margin-bottom: 20px; /* Ensure spacing between these items */
-        }
-         .competitive-edge-section .feature-item:last-child {
-            margin-bottom: 0;
-        }
-        .competitive-edge-section .feature-item h4 {
-            font-size: 1.1rem; 
-            font-weight: 700;
-            color: var(--text-on-light-primary);
-            margin-bottom: 8px;
-        }
-        .competitive-edge-section .feature-item p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: var(--text-on-light-secondary);
-            margin-bottom: 0; /* Paragraphs in these items don't need extra bottom margin */
-        }
+        .feature-card-item h3 { font-size: 1.2rem; font-weight: 600; color: var(--text-on-light-primary); margin-bottom: 8px; }
+        .feature-card-item p { font-size: 0.95rem; color: var(--text-on-light-secondary); line-height: 1.6; }
 
         /* How It Works Section */
         .steps-grid { display: flex; flex-direction: column; gap: 35px; align-items: center; }
@@ -341,7 +243,7 @@ ii<!DOCTYPE html>
             .hero-section p.subtitle { font-size: 1rem; }
             .logo-main-title { font-size: 2.2rem; }
             .content-section-card h2, .final-cta-card h2 { font-size: 1.6rem; }
-            .feature-item h3, .step-item h3 { font-size: 1.1rem; }
+            .feature-card-item h3, .step-item h3 { font-size: 1.1rem; }
             .three-column-grid { grid-template-columns: 1fr; gap: 15px;}
             .content-section-card, .form-card { padding: 30px 20px;}
         }
@@ -359,122 +261,130 @@ ii<!DOCTYPE html>
 
         <main>
             <section class="hero-section">
-                <h1>AI-Powered ML System Generation:<br><span class="hero-tagline">From Concept to Code in Minutes.</span></h1>
-                <p class="subtitle">Automate the entire ML project journey. Design strategy, create data, build runnable code repositories, and deploy—faster than ever before.</p>
+                <h1>Understand Your Systems, <span class="highlight">Accelerate Innovation</span></h1>
+                <p class="subtitle">Archon AI uses advanced AI agents to analyze complex codebases, providing deep insights, architectural clarity, and actionable modernization roadmaps.</p>
                 <!-- Replace with your actual GIF or MP4 -->
-                <img src="archon-ml.gif" alt="Archon AI Demo Visual" class="hero-demo-media">
-                 <a href="#earlyAccessForm" class="schedule-demo-button" style="margin-top: 20px; margin-bottom: 20px; padding: 15px 30px; font-size: 1.1rem;">
-                    Get Early Access & Your Free ML System Design Guide
-                </a>
+                <img src="archon-demo.gif" alt="Archon AI Demo Visual" class="hero-demo-media">
             </section>
 
-            <section class="content-section-card the-problem-section">
-                <h2>Stop Wasting Weeks on ML Project Setup.</h2>
-                <p style="text-align:center; max-width: 700px; margin: 0 auto 20px auto;">
-                    Building robust Machine Learning systems is plagued by complexity and bottlenecks. Data scientists spend an average of 30-40% of their time on non-core tasks like:
-                </p>
-                <div class="problem-items-container" style="max-width: 550px; margin: 0 auto 20px auto; display: flex; flex-direction: column; gap: 15px;">
-                    <div class="problem-item-card"><p>Translating business needs into ML problems.</p></div>
-                    <div class="problem-item-card"><p>Finding or preparing the right datasets.</p></div>
-                    <div class="problem-item-card"><p>Setting up project structures and writing boilerplate code.</p></div>
-                    <div class="problem-item-card"><p>Debugging initial pipeline errors.</p></div>
-                </div>
-                <p style="text-align:center; max-width: 700px; margin: 20px auto 30px auto;">
-                    This "ML cold start" problem leads to costly delays and high project failure rates.
-                </p>
-                <!-- (Visual): An infographic or icon set representing the wasted time, complexity, or project failures. -->
-            </section>
-
-            <section class="content-section-card solution-section">
-                <h2>Revolutionize Your ML Workflow with Archon AI.</h2>
-                <p style="text-align:center; max-width: 700px; margin: 0 auto 40px auto;">Archon AI acts as your AI ML System Architect, automating expert-level guidance and code creation through an interactive co-pilot.</p>
-                <div class="feature-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
-                    <div class="feature-item">
-                        <div class="icon">🎨</div> <!-- Placeholder icon -->
-                        <h3>AI-Driven Strategy & Design</h3>
-                        <ul style="font-size: 0.9rem; color: var(--text-on-light-secondary); padding-left: 20px; text-align: left;">
-                            <li>Problem Framing: AI reframes your business problem into precise ML tasks.</li>
-                            <li>Data Strategy: Recommends ideal data, suggests public datasets (Hugging Face, Kaggle), or helps generate synthetic data.</li>
-                            <li>Model Paths: Proposes tailored ML models (PyTorch, TensorFlow, Scikit-learn) with cost/performance trade-offs.</li>
-                        </ul>
+            <section class="content-section-card pdf-lead-card">
+                <div class="pdf-lead-icon">💡</div>
+                <h2>FREE Guide: "Optimizing ML Systems with AI Code Analysis"</h2>
+                <p>Discover how Archon AI helps uncover inefficiencies and streamline your Machine Learning infrastructure through intelligent code insights.</p>
+                 <div class="three-column-grid">
+                    <div class="three-column-grid-item">
+                        <h4><span class="icon-placeholder">⚙️</span>Model Serving</h4>
+                        <p>Optimize inference pipelines</p>
                     </div>
-                    <div class="feature-item">
-                        <div class="icon">⚙️</div> <!-- Placeholder icon -->
-                        <h3>Automated Project Generation</h3>
-                        <ul style="font-size: 0.9rem; color: var(--text-on-light-secondary); padding-left: 20px; text-align: left;">
-                            <li>Full Repo Creation: Builds a complete, best-practice ML project directory structure with all essential files.</li>
-                            <li>Runnable Code: Generates functional Python code for data loaders, models, training, and evaluation.</li>
-                        </ul>
+                    <div class="three-column-grid-item">
+                        <h4><span class="icon-placeholder">🌊</span>Data Flows</h4>
+                        <p>Trace & improve data lineage</p>
                     </div>
-                    <div class="feature-item">
-                        <div class="icon">📊</div> <!-- Placeholder icon -->
-                        <h3>Live Data & Interactive EDA</h3>
-                        <ul style="font-size: 0.9rem; color: var(--text-on-light-secondary); padding-left: 20px; text-align: left;">
-                            <li>Instant Data: Generates synthetic data or loads public datasets live.</li>
-                            <li>Visual Insights: Executes EDA code to display plots and summary statistics directly in the UI.</li>
-                        </ul>
-                    </div>
-                    <div class="feature-item">
-                        <div class="icon">📥</div> <!-- Placeholder icon -->
-                        <h3>Download & Deploy</h3>
-                        <ul style="font-size: 0.9rem; color: var(--text-on-light-secondary); padding-left: 20px; text-align: left;">
-                            <li>Project Delivery: Download your entire generated project as a ready-to-develop ZIP archive.</li>
-                            <li>Future (Optional): Streamline deployment to AWS, Azure, and more.</li>
-                        </ul>
+                    <div class="three-column-grid-item">
+                        <h4><span class="icon-placeholder">🛠️</span>MLOps Stack</h4>
+                        <p>Understand component interactions</p>
                     </div>
                 </div>
-                 <!-- (Visuals): Clean, distinct icons for each sub-point. Small screenshots from your demo for each stage (Strategy, Project Generation, Live EDA). -->
-            </section>
-
-            <section class="content-section-card competitive-edge-section">
-                <h2>AI is Redefining ML Dev. We're Leading the Way.</h2>
-                <div style="max-width: 700px; margin: 0 auto;">
-                    <p style="text-align:center; margin-bottom: 30px;">The convergence of powerful Large Language Models and the escalating complexity of MLOps makes Archon AI uniquely positioned.</p>
-                    <div class="feature-item" style="margin-bottom: 20px; text-align:left;">
-                        <h4 style="font-weight: 600; margin-bottom:5px;">Beyond Code Assistants</h4>
-                        <p style="font-size: 0.95rem; color: var(--text-on-light-secondary);">Unlike basic coding assistants (e.g., Cursor, Copilot) that offer line-level help, Archon AI automates strategic system design and multi-file project creation.</p>
-                    </div>
-                    <div class="feature-item" style="margin-bottom: 20px; text-align:left;">
-                        <h4 style="font-weight: 600; margin-bottom:5px;">Beyond MLOps Platforms</h4>
-                        <p style="font-size: 0.95rem; color: var(--text-on-light-secondary);">MLOps platforms manage infrastructure; we generate the ML system that runs on them.</p>
-                    </div>
-                    <div class="feature-item" style="text-align:left;">
-                        <h4 style="font-weight: 600; margin-bottom:5px;">Democratizing Expertise</h4>
-                        <p style="font-size: 0.95rem; color: var(--text-on-light-secondary);">We bring the skills of an ML Solutions Architect to every team, accelerating innovation and reducing expert bottlenecks.</p>
-                    </div>
-                     <!-- (Visual): A simplified diagram showing ArchonGen AI's unique position in the market (e.g., a 2x2 matrix as discussed). -->
+                <div class="pdf-available-banner">
+                    <span class="icon-placeholder">📄</span> Free PDF Guide Available
                 </div>
             </section>
 
-            <section class="content-section-card form-card" id="early-access-form">
-                <h2 class="form-title" style="font-size: 1.8rem; margin-bottom: 10px;">Accelerate Your Next ML Project.</h2>
-                <p class="form-description" style="font-size: 1.05rem; margin-bottom: 30px;">Join our early access program and get a free 'AI-Powered ML System Design Guide' PDF.</p>
+            <section class="content-section-card form-card">
+                <h2 class="form-title">Get Your Free Guide + Early Access</h2>
+                <p class="form-description">Request the "Optimizing ML Systems" PDF and join the Archon AI early access list.</p>
                 <form id="earlyAccessForm" action="https://formsubmit.co/archon.ai.work@gmail.com" method="POST" class="cta-form">
-                    <input type="hidden" name="_subject" value="Archon AI: ML System Design Guide & Early Access!">
+                    <input type="hidden" name="_subject" value="Archon AI: ML Systems Guide Request & Early Access!">
                     <input type="hidden" name="_replyto" id="formReplyTo">
-                    <input type="hidden" name="_next" value="https://archon-ai.github.io/thank-you.html">
-                    <input type="hidden" name="source" value="ArchonAI Landing Page - ML System Design Guide">
+                    <input type="hidden" name="_next" value="https://archon-ai.github.io/thank-you.html"> <!-- ** IMPORTANT: UPDATE THIS URL ** -->
+                    <!-- <input type="hidden" name="_captcha" value="false"> --> <!-- Remove for production -->
+                    <input type="hidden" name="source" value="ArchonAI Landing Page - ML Systems Guide">
 
                     <input type="text" id="formFirstName" name="firstName" placeholder="First Name (Optional)">
                     <input type="text" id="formLastName" name="lastName" placeholder="Last Name (Optional)">
                     <input type="email" id="formEmail" name="email" placeholder="Your Work Email Address" required>
                     <input type="text" id="formCompany" name="company" placeholder="Company / School Name (Optional)">
-                    <textarea id="formUseCase" name="useCase" placeholder="How do you plan to use Archon AI? (Optional)" rows="4"></textarea>
+                    <textarea id="formFeedback" name="feedback" placeholder="I'm interested in the PDF for ML Systems! (Optional: specific challenges?)" rows="3"></textarea>
                     <button type="submit" id="formSubmitButton">
-                        <span class="button-text-span">Get Free Guide & Join Waitlist</span>
+                        <span class="button-text-span">📄 GET FREE GUIDE + JOIN WAITLIST</span>
                         <span class="spinner-span" style="display: none;"><div class="spinner"></div></span>
                     </button>
                 </form>
                 <div id="formMessage" class="form-message-area"></div>
-                <p class="form-note-privacy" style="margin-top: 25px;">
-                    <span class="icon-placeholder">🔒</span> We respect your privacy. Your information will only be used for early access updates and product insights.
+                <p class="form-note-privacy">
+                    <span class="icon-placeholder">🔒</span> We respect your privacy. No spam, ever.
                 </p>
+            </section>
+
+            <section class="content-section-card features-section">
+                <h2 class="section-title-text">Why Archon AI?</h2>
+                <div class="feature-grid">
+                    <div class="feature-item">
+                        <div class="icon">💡</div>
+                        <h3>Deep Code Understanding</h3>
+                        <p>Automated architecture visualization and contextual insights for any codebase, including complex ML pipelines.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🎯</div>
+                        <h3>Actionable Diagnostics</h3>
+                        <p>Pinpoint performance bottlenecks, security vulnerabilities, and cost drivers with AI-driven precision.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">🚀</div>
+                        <h3>Guided Modernization</h3>
+                        <p>Receive prioritized recommendations and clear roadmaps for refactoring and evolving your systems effectively.</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="icon">💬</div>
+                        <h3>Intelligent Q&A</h3>
+                        <p>Ask natural language questions about your systems and get instant, context-aware answers from our AI agent.</p>
+                    </div>
+                     <div class="feature-item">
+                        <div class="icon">📈</div>
+                        <h3>Boost Developer Velocity</h3>
+                        <p>Slash time spent deciphering code, accelerate onboarding, and empower your team to build and iterate faster.</p>
+                    </div>
+                     <div class="feature-item">
+                        <div class="icon">🛡️</div>
+                        <h3>Proactive System Health</h3>
+                        <p>Continuously identify and mitigate risks, improve code quality, and ensure long-term system maintainability and robustness.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section-card how-it-works-section">
+                <h2 class="section-title-text">How It Works in 3 Simple Steps</h2>
+                <div class="steps-grid">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3>Connect Your Repo</h3>
+                        <p>Securely link your GitHub repository to Archon AI. Our platform begins its deep dive instantly.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3>AI Agent Analysis</h3>
+                        <p>Our advanced AI agent performs a multi-dimensional analysis of your code, architecture, and operational patterns.</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3>Unlock Insights</h3>
+                        <p>Access an interactive dashboard with visualizations, prioritized actions, and intelligent Q&A capabilities.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section-card final-cta-card">
+                <h2>Ready to See Archon AI in Action?</h2>
+                <p>Book a personalized demo and discover how Archon AI can transform your system understanding and development workflow.</p>
+                <a href="#" id="bookDemoButton" class="schedule-demo-button">
+                     <span class="icon-placeholder">📅</span> SCHEDULE YOUR DEMO <span>→</span>
+                </a>
             </section>
         </main>
     </div>
 
     <footer>
-        <p>&copy; 2025 Archon AI. All rights reserved.</p>
+        <p>&copy; 2024-2025 Archon AI. All rights reserved.</p>
         <p><a href="mailto:archon.ai.work@gmail.com">archon.ai.work@gmail.com</a></p>
     </footer>
 
@@ -506,7 +416,7 @@ ii<!DOCTYPE html>
             const firstNameInput = document.getElementById('formFirstName');
             const lastNameInput = document.getElementById('formLastName');
             const companyInput = document.getElementById('formCompany');
-            const feedbackInput = document.getElementById('formUseCase');
+            const feedbackInput = document.getElementById('formFeedback');
             const replyToInput = document.getElementById('formReplyTo');
             const formMessage = document.getElementById('formMessage');
             const submitButton = document.getElementById('formSubmitButton');
